@@ -14,6 +14,6 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreAndTime.text = "SCORE:" + Convert.ToString(GameManager.Instance.score) + Environment.NewLine + "TIME:" + Convert.ToString(GameManager.Instance.time);    
+        scoreAndTime.text = "SCORE:" + Convert.ToString(GameManager.Instance.score) + Environment.NewLine + "TIME:" + Convert.ToString(Convert.ToInt32(GameManager.Instance.time));    
     }
 }

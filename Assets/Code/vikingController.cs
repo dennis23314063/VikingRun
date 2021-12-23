@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 
 public class vikingController : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class vikingController : MonoBehaviour
     public bool fixDirection;
     public bool isGameStart;
     public bool isDie;
+    private Vector3 initialPosition;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -68,7 +69,12 @@ public class vikingController : MonoBehaviour
         GameManager.Instance.isDie = true;
         speed = 0;  
         verticalSpeed = 0f;
-        
+    }
+    private void Drop()
+    {
+        input.vikingInput.Disable();
+        animator.SetBool("Jumping", true);
+        GameManager.Instance.isDie = true;
     }
     private void Gravity()
     {
@@ -108,6 +114,10 @@ public class vikingController : MonoBehaviour
         }
         
     }
+    private void GameOver()
+    {
+        SceneManager.LoadScene(3);
+    }
     private bool checkAngle(float a)
     {
         return Mathf.Floor(a) == angle || Mathf.Ceil(a) == angle;
@@ -138,23 +148,32 @@ public class vikingController : MonoBehaviour
         fixDirection = false;
         isGameStart = false;
         isDie = false;
+        initialPosition = characterController.transform.position;
     }
     void Update()
     {
+        Debug.Log(initialPosition);
+        Debug.Log(isGameStart);
         Jump();
         Gravity();
         if (isGameStart)
         {
             
             characterController.Move(speed * Time.deltaTime * transform.forward);
-            if (characterController.transform.position.y < 0) {
-                Die();
+            if (characterController.transform.position.y < -1f) {
+                Drop();
+                Invoke("GameOver",1f);
             }
         }
         else {
             characterController.Move(speed * Time.deltaTime * transform.forward*realInput.y);
             animator.SetBool("Running",realInput.y!=0);
-            
+            if (characterController.transform.position.y < -1f)
+            {
+                animator.SetBool("Jumping", true);
+                characterController.transform.position = initialPosition;
+                return;
+            }
         }
         characterController.Move(Time.deltaTime * new Vector2(0, transformed.y));
         Rotate();
