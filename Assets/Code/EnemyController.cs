@@ -24,9 +24,9 @@ public class EnemyController : MonoBehaviour
 
         if (viking.isDie&&transform.localPosition.z<-1)
         {
-            transform.localPosition += new Vector3(0,0,0.01f);
+            transform.localPosition += new Vector3(0,0,0.02f);
         }
-        if (transform.localPosition.z >= -1.8f) {
+        if (transform.localPosition.z >= -4f) {
             animator.SetBool("Running",false);
             animator.SetBool("Choping",true);
         }

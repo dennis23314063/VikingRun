@@ -152,8 +152,6 @@ public class vikingController : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(initialPosition);
-        Debug.Log(isGameStart);
         Jump();
         Gravity();
         if (isGameStart)
