@@ -31,8 +31,4 @@ Unity 2020.3.23f1 ,Visual Studio 2017
 ## feedback
 這次作業真滴難，我的遊戲是好玩的
 ## git
-<<<<<<< HEAD
 https://github.com/dennis23314063/VikingRun
-=======
-https://github.com/dennis23314063/VikingRun
->>>>>>> final change
