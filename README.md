@@ -30,7 +30,5 @@ Unity 2020.3.23f1 ,Visual Studio 2017
 8.轉彎很順。\
 9.有做一個小平台當緩衝，可以調整好再開始。\
 10.被維京人追到的人他會砍你。
-## feedback
-這次作業真滴難，我的遊戲是好玩的
 ## git
 https://github.com/dennis23314063/VikingRun
